@@ -77,6 +77,7 @@ v_l INT;
 v_xl INT;
 v_id_produs INT;
 BEGIN
+ DBMS_OUTPUT.PUT_LINE('Inserare magazine...');
 FOR v_i in 1..100 LOOP
    v_strada:=lista_strazi(TRUNC(DBMS_RANDOM.VALUE(0,lista_strazi.count))+1);
    v_numar_strada:=ROUND(DBMS_RANDOM.VALUE(1,1000))+1;
@@ -85,6 +86,8 @@ FOR v_i in 1..100 LOOP
    v_nr_angajati:=ROUND(DBMS_RANDOM.VALUE(1000,3000));
    INSERT INTO magazine VALUES(v_i,v_adresa,v_telefon,v_nr_angajati);
 END LOOP;
+DBMS_OUTPUT.PUT_LINE('Inserare magazine..Gata!');
+DBMS_OUTPUT.PUT_LINE('Inserare produse..');
 FOR v_j in 1..300000 LOOP
       IF (DBMS_RANDOM.VALUE(0,100)<50) THEN
          v_categorie:=lista_categorii_topuri(TRUNC(DBMS_RANDOM.VALUE(0,lista_categorii_topuri.count))+1);
@@ -99,6 +102,9 @@ FOR v_j in 1..300000 LOOP
         v_pret:=TRUNC(DBMS_RANDOM.VALUE(10,1000),2);
         INSERT INTO produse VALUES (v_j,v_categorie,v_denumire,v_model,v_culoare,v_pret);
 END LOOP;
+
+   DBMS_OUTPUT.PUT_LINE('Inserare produse...Gata!');
+   DBMS_OUTPUT.PUT_LINE('Inserare stocuri_magazin..');
 v_count:=1;
 FOR v_i in 1..100 LOOP
  FOR v_j in 1..2000 LOOP
@@ -112,4 +118,5 @@ FOR v_i in 1..100 LOOP
           v_count:=v_count+1;
  END LOOP;
 END LOOP;
+DBMS_OUTPUT.PUT_LINE('Inserare stocuri_magazin..Gata!');
 END;
