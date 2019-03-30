@@ -23,7 +23,7 @@ DROP TABLE venituri CASCADE CONSTRAINTS
 /
 CREATE TABLE magazine (
   id INT NOT NULL PRIMARY KEY,
-  adresa VARCHAR2(40) NOT NULL,
+  adresa VARCHAR2(100) NOT NULL,
   telefon  VARCHAR2(11) NOT NULL,
   nr_angajati INT
 )
@@ -132,3 +132,26 @@ CREATE TABLE venituri (
   CONSTRAINT fk_venituri_id_evidenta FOREIGN KEY (id_evidenta) REFERENCES evidente(id)
 )
 /
+SET SERVEROUTPUT ON;
+DECLARE
+ TYPE varr IS VARRAY(1000) OF VARCHAR2(60);
+ lista_strazi varr:=
+varr('Libertatii','Mihai Eminescu','Ion Creanga','Primaverii','Tudor Vladimirescu','Strapungere Silvestru','Fericirii','Zorilor','Trandafirilor',
+'Garii','Stefan cel Mare', 'Victoriei','Pacii','Morii','Cuza Voda','Tineretului','Crinului','Gradinitei','Traian','Izvorului','Muncii','Lalelelor','Rozelor',
+'Viitorului','Sportului','Mihail Sadoveanu','Mihail Kogalniceanu','Narciselor','Morii','Eroilor','Pacii','Decebal','Stejarului','Republicii','Victoriei',
+'Sararie','Bulevard Carol I','Pacurari','Bulevardul Primaverii','Basarabi','Calarasi','Ciric','Ignat');
+v_strada VARCHAR2(60);
+v_adresa VARCHAR2(100);
+v_numar_strada INT;
+v_telefon VARCHAR2(11);
+v_nr_angajati INT;
+BEGIN
+FOR v_i in 1..100 LOOP
+   v_strada:=lista_strazi(TRUNC(DBMS_RANDOM.VALUE(0,lista_strazi.count))+1);
+   v_numar_strada:=ROUND(DBMS_RANDOM.VALUE(1,1000))+1;
+   v_adresa:='Str. '||v_strada||' nr. '||v_numar_strada;
+   v_telefon:='07'||ROUND(DBMS_RANDOM.VALUE(100,999))||ROUND(DBMS_RANDOM.VALUE(100,999))||ROUND(DBMS_RANDOM.VALUE(10,99));
+   v_nr_angajati:=ROUND(DBMS_RANDOM.VALUE(1000,3000));
+   INSERT INTO magazine VALUES(v_i,v_adresa,v_telefon,v_nr_angajati);
+END LOOP;
+END;
