@@ -110,6 +110,12 @@ CURSOR lista_contabili IS SELECT id FROM angajati where functie='Contabil';
 v_id_evidenta INT;
 v_data_contabil DATE;
 
+---pentru tabela contracte
+CURSOR lista_manageri IS SELECT id FROM angajati where functie='Manager';
+v_id_contract INT;
+v_data_inceput DATE;
+v_data_sfarsit DATE;
+
 BEGIN
  DBMS_OUTPUT.PUT_LINE('Inserare magazine...');
 FOR v_i in 1..100 LOOP
@@ -243,4 +249,17 @@ v_id_evidenta:=1;
       END LOOP;
     END LOOP;
   DBMS_OUTPUT.PUT_LINE('Inserare evidente..Gata!');
+  DBMS_OUTPUT.PUT_LINE('Inserare contracte..');
+  v_id_contract:=1;
+   FOR v_id_manager in lista_manageri LOOP
+      FOR v_i in 1..10 LOOP
+        --data random
+        v_data_inceput:=SYSDATE + (365 * 2 * DBMS_RANDOM.VALUE(0,1) - 365);
+        v_data_sfarsit:=v_data_inceput+(365 * 2 * DBMS_RANDOM.VALUE(1,2));
+        INSERT INTO contracte VALUES(v_id_contract,v_id_manager.id,v_data_inceput,v_data_sfarsit);
+        --v_id_contract
+        v_id_contract:=v_id_contract+1;
+        END LOOP;
+      END LOOP;
+      DBMS_OUTPUT.PUT_LINE('Inserare contracte..Gata!');
 END;
