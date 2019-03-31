@@ -116,6 +116,19 @@ v_id_contract INT;
 v_data_inceput DATE;
 v_data_sfarsit DATE;
 
+--pentru tabela cheltuieli
+v_nr_inregistrari INT;
+v_id_cheltuieli INT;
+v_valoare_cheltuieli NUMBER(10,2);
+v_descriere_cheltuieli VARCHAR2(30);
+TYPE varr IS VARRAY(1000) OF VARCHAR2(30);
+lista_cheltuieli varr:=varr('salarii','chirie','impozite','taxe','materiale','intretinere');
+
+--pentru tabela venituri
+v_nr_inregistrari2 INT;
+v_id_venituri INT;
+v_valoare_venituri NUMBER(10,2);
+v_descriere_venituri VARCHAR2(30);
 BEGIN
  DBMS_OUTPUT.PUT_LINE('Inserare magazine...');
 FOR v_i in 1..100 LOOP
@@ -262,4 +275,28 @@ v_id_evidenta:=1;
         END LOOP;
       END LOOP;
       DBMS_OUTPUT.PUT_LINE('Inserare contracte..Gata!');
+      DBMS_OUTPUT.PUT_LINE('Inserare cheltuieli..');
+      select count(id) INTO v_nr_inregistrari from evidente;
+      v_id_cheltuieli:=1;
+      FOR v_i in 1..v_nr_inregistrari LOOP
+      FOR v_j in 1..3 LOOP
+      v_valoare_cheltuieli:=TRUNC(DBMS_RANDOM.VALUE(1000,100000),2);
+      v_descriere_cheltuieli:=lista_cheltuieli(TRUNC(DBMS_RANDOM.VALUE(0,lista_cheltuieli.count))+1);
+      INSERT INTO cheltuieli VALUES(v_id_cheltuieli,v_i,v_valoare_cheltuieli,v_descriere_cheltuieli);
+      v_id_cheltuieli:=v_id_cheltuieli+1;
+      END LOOP;
+      END LOOP;
+      DBMS_OUTPUT.PUT_LINE('Inserare cheltuieli..Gata!');
+      DBMS_OUTPUT.PUT_LINE('Inserare venituri..');
+      select count(id) INTO v_nr_inregistrari2 from evidente;
+      v_descriere_venituri:='vanzari';
+      v_id_venituri:=1;
+      FOR v_i in 1..v_nr_inregistrari2 LOOP
+      FOR v_j in 1..3 LOOP
+      v_valoare_venituri:=TRUNC(DBMS_RANDOM.VALUE(1000,100000),2);
+      INSERT INTO venituri VALUES(v_id_venituri,v_i,v_valoare_venituri,v_descriere_venituri);
+      v_id_venituri:=v_id_venituri+1;
+      END LOOP;
+      END LOOP;
+      DBMS_OUTPUT.PUT_LINE('Inserare venituri..Gata!');
 END;
