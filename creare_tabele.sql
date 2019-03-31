@@ -7,6 +7,8 @@ DROP TABLE facturi CASCADE CONSTRAINTS
 /
 DROP TABLE produse CASCADE CONSTRAINTS
 /
+DROP TABLE lista_produse CASCADE CONSTRAINTS
+/
 DROP TABLE stocuri_magazin CASCADE CONSTRAINTS
 /
 DROP TABLE magazine CASCADE CONSTRAINTS
@@ -69,31 +71,26 @@ CONSTRAINT fk_stocuri_magazin_id_produs FOREIGN KEY (id_produs) REFERENCES produ
 );
 /
 
-
-
-drop type lista_produse force;
-/
-create or replace type produs as object(
-  id_produs number(10),
-  denumire_produs varchar2(30),
-  pret_bucata number(10,2),
-  cantitate number(5)
-  );
-/
-create or replace TYPE lista_produse IS TABLE OF produs;
-/
-
 create table facturi(
   id INT PRIMARY KEY,
   id_angajat INT NOT NULL,
   id_client INT NOT NULL,
   data_factura DATE,
   valoare NUMBER(10,2),
-  lista_produse lista_produse,
   CONSTRAINT fk_facturi_id_angajat FOREIGN KEY (id_angajat) REFERENCES angajati(id),
   CONSTRAINT fk_facturi_id_client FOREIGN KEY (id_client) REFERENCES clienti(id)
-) nested table lista_produse store as lista;
+)
 /
+
+create table lista_produse(
+  id INT PRIMARY KEY,
+  id_produs INT NOT NULL,
+  id_factura INT NOT NULL,
+  CONSTRAINT fk_lista_produse_id_produs FOREIGN KEY (id_produs) REFERENCES produse(id),
+  CONSTRAINT fk_lista_produse_id_factura FOREIGN KEY (id_factura) REFERENCES facturi(id)
+)
+/
+
 CREATE TABLE evidente (
   id INT NOT NULL PRIMARY KEY,
   id_angajat INT,
