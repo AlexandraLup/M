@@ -117,26 +117,36 @@ lista_nume varr := varr('Ababei','Acasandrei','Adascalitei','Afanasie','Agafitei
 BEGIN
  DBMS_OUTPUT.PUT_LINE('Inserare magazine...');
 FOR v_i in 1..100 LOOP
+  --adresa
    v_strada:=lista_strazi(TRUNC(DBMS_RANDOM.VALUE(0,lista_strazi.count))+1);
    v_numar_strada:=ROUND(DBMS_RANDOM.VALUE(1,1000))+1;
    v_adresa:='Str. '||v_strada||' nr. '||v_numar_strada;
+
+   --telefon
    v_telefon:='07'||ROUND(DBMS_RANDOM.VALUE(100,999))||ROUND(DBMS_RANDOM.VALUE(100,999))||ROUND(DBMS_RANDOM.VALUE(10,99));
+
+   --numar angajati
    v_nr_angajati:=ROUND(DBMS_RANDOM.VALUE(1000,3000));
    INSERT INTO magazine VALUES(v_i,v_adresa,v_telefon,v_nr_angajati);
 END LOOP;
 DBMS_OUTPUT.PUT_LINE('Inserare magazine..Gata!');
 DBMS_OUTPUT.PUT_LINE('Inserare produse..');
 FOR v_j in 1..300000 LOOP
+      ---categorie+model
       IF (DBMS_RANDOM.VALUE(0,100)<50) THEN
          v_categorie:=lista_categorii_topuri(TRUNC(DBMS_RANDOM.VALUE(0,lista_categorii_topuri.count))+1);
          v_model:=lista_model(TRUNC(DBMS_RANDOM.VALUE(0,lista_model.count))+1);
       ELSE
          v_categorie:=lista_categorii_bottom(TRUNC(DBMS_RANDOM.VALUE(0,lista_categorii_bottom.count))+1);
-         v_culoare:=lista_culori(TRUNC(DBMS_RANDOM.VALUE(0,lista_culori.count))+1);
          v_model:=NULL;
       END IF;
+
+      ---culoare
         v_culoare:=lista_culori(TRUNC(DBMS_RANDOM.VALUE(0,lista_culori.count))+1);
+
+        ---denumire
         v_denumire:=v_categorie||' '||lista_brand(TRUNC(DBMS_RANDOM.VALUE(0,lista_brand.count))+1);
+        ---pret
         v_pret:=TRUNC(DBMS_RANDOM.VALUE(10,1000),2);
         INSERT INTO produse VALUES (v_j,v_categorie,v_denumire,v_model,v_culoare,v_pret);
 END LOOP;
@@ -146,6 +156,7 @@ END LOOP;
 v_count:=1;
 FOR v_i in 1..100 LOOP
  FOR v_j in 1..2000 LOOP
+ --marimi
   v_xs:=ROUND(DBMS_RANDOM.VALUE(1,1000))+1;
     v_s:=ROUND(DBMS_RANDOM.VALUE(1,1000))+1;
       v_m:=ROUND(DBMS_RANDOM.VALUE(1,1000))+1;
@@ -157,7 +168,7 @@ FOR v_i in 1..100 LOOP
  END LOOP;
 END LOOP;
 DBMS_OUTPUT.PUT_LINE('Inserare stocuri_magazin..Gata!');
-
+DBMS_OUTPUT.PUT_LINE('Inserare angajati..');
 
   --ANGAJATI
   for v_iterator_magazine in 1..100 loop
@@ -197,7 +208,8 @@ DBMS_OUTPUT.PUT_LINE('Inserare stocuri_magazin..Gata!');
 
       end loop;
   end loop;
-
+DBMS_OUTPUT.PUT_LINE('Inserare angajati..Gata!');
+DBMS_OUTPUT.PUT_LINE('Inserare clienti..');
    --CLIENTI
    for v_iterator in 1..300000 loop
       --nume
@@ -222,5 +234,5 @@ DBMS_OUTPUT.PUT_LINE('Inserare stocuri_magazin..Gata!');
 
        insert into clienti (id, nume, prenume, data_inregistrare) values ( v_id_clienti, v_nume, v_prenume, v_data_inregistrare);
    end loop;
-
+DBMS_OUTPUT.PUT_LINE('Inserare clienti..Gata!');
 END;
