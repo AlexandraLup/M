@@ -110,6 +110,7 @@ CREATE TABLE cheltuieli (
   id INT NOT NULL PRIMARY KEY,
   id_evidenta INT,
   valoare NUMBER(10,2),
+  descriere VARCHAR2(30),
   CONSTRAINT fk_cheluieli_id_evidenta FOREIGN KEY (id_evidenta) REFERENCES evidente(id)
 )
 /
@@ -117,6 +118,7 @@ CREATE TABLE venituri (
   id INT NOT NULL PRIMARY KEY,
   id_evidenta INT NOT NULL,
   valoare NUMBER(10,2),
+  descriere VARCHAR2(30),
   CONSTRAINT fk_venituri_id_evidenta FOREIGN KEY (id_evidenta) REFERENCES evidente(id)
 )
 /
