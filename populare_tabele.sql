@@ -10,8 +10,8 @@ DECLARE
 
 	lista_nume varr := varr('Ababei','Acasandrei','Adascalitei','Afanasie','Agafitei','Agape','Aioanei','Alexandrescu','Alexandru','Alexe','Alexii','Amarghioalei','Ambroci','Andonesei','Andrei','Andrian','Andrici','Andronic','Andros','Anghelina','Anita','Antochi','Antonie','Apetrei','Apostol','Arhip','Arhire','Arteni','Arvinte','Asaftei','Asofiei','Aungurenci','Avadanei','Avram','Babei','Baciu','Baetu','Balan','Balica','Banu','Barbieru','Barzu','Bazgan','Bejan','Bejenaru','Belcescu','Belciuganu','Benchea','Bilan','Birsanu','Bivol','Bizu','Boca','Bodnar','Boistean','Borcan','Bordeianu','Botezatu','Bradea','Braescu','Budaca','Bulai','Bulbuc-aioanei','Burlacu','Burloiu','Bursuc','Butacu','Bute','Buza','Calancea','Calinescu','Capusneanu','Caraiman','Carbune','Carp','Catana','Catiru','Catonoiu','Cazacu','Cazamir','Cebere','Cehan','Cernescu','Chelaru','Chelmu','Chelmus','Chibici','Chicos','Chilaboc','Chile','Chiriac','Chirila','Chistol','Chitic','Chmilevski','Cimpoesu','Ciobanu','Ciobotaru','Ciocoiu','Ciofu','Ciornei','Citea','Ciucanu','Clatinici','Clim','Cobuz','Coca','Cojocariu','Cojocaru','Condurache','Corciu','Corduneanu','Corfu','Corneanu','Corodescu','Coseru','Cosnita','Costan','Covatariu','Cozma','Cozmiuc','Craciunas','Crainiceanu','Creanga','Cretu','Cristea','Crucerescu','Cumpata','Curca','Cusmuliuc','Damian','Damoc','Daneliuc','Daniel','Danila','Darie','Dascalescu','Dascalu','Diaconu','Dima','Dimache','Dinu','Dobos','Dochitei','Dochitoiu','Dodan','Dogaru','Domnaru','Dorneanu','Dragan','Dragoman','Dragomir','Dragomirescu','Duceac','Dudau','Durnea','Edu','Eduard','Eusebiu','Fedeles','Ferestraoaru','Filibiu','Filimon','Filip','Florescu','Folvaiter','Frumosu','Frunza','Galatanu','Gavrilita','Gavriliuc','Gavrilovici','Gherase','Gherca','Ghergu','Gherman','Ghibirdic','Giosanu','Gitlan','Giurgila','Glodeanu','Goldan','Gorgan','Grama','Grigore','Grigoriu','Grosu','Grozavu','Gurau','Haba','Harabula','Hardon','Harpa','Herdes','Herscovici','Hociung','Hodoreanu','Hostiuc','Huma','Hutanu','Huzum','Iacob','Iacobuta','Iancu','Ichim','Iftimesei','Ilie','Insuratelu','Ionesei','Ionesi','Ionita','Iordache','Iordache-tiroiu','Iordan','Iosub','Iovu','Irimia','Ivascu','Jecu','Jitariuc','Jitca','Joldescu','Juravle','Larion','Lates','Latu','Lazar','Leleu','Leon','Leonte','Leuciuc','Leustean','Luca','Lucaci','Lucasi','Luncasu','Lungeanu','Lungu','Lupascu','Lupu','Macariu','Macoveschi','Maftei','Maganu','Mangalagiu','Manolache','Manole','Marcu','Marinov','Martinas','Marton','Mataca','Matcovici','Matei','Maties','Matrana','Maxim','Mazareanu','Mazilu','Mazur','Melniciuc-puica','Micu','Mihaela','Mihai','Mihaila','Mihailescu','Mihalachi','Mihalcea','Mihociu','Milut','Minea','Minghel','Minuti','Miron','Mitan','Moisa','Moniry-abyaneh','Morarescu','Morosanu','Moscu','Motrescu','Motroi','Munteanu','Murarasu','Musca','Mutescu','Nastaca','Nechita','Neghina','Negrus','Negruser','Negrutu','Nemtoc','Netedu','Nica','Nicu','Oana','Olanuta','Olarasu','Olariu','Olaru','Onu','Opariuc','Oprea','Ostafe','Otrocol','Palihovici','Pantiru','Pantiruc','Paparuz','Pascaru','Patachi','Patras','Patriche','Perciun','Perju','Petcu','Pila','Pintilie','Piriu','Platon','Plugariu','Podaru','Poenariu','Pojar','Popa','Popescu','Popovici','Poputoaia','Postolache','Predoaia','Prisecaru','Procop','Prodan','Puiu','Purice','Rachieru','Razvan','Reut','Riscanu','Riza','Robu','Roman','Romanescu','Romaniuc','Rosca','Rusu','Samson','Sandu','Sandulache','Sava','Savescu','Schifirnet','Scortanu','Scurtu','Sfarghiu','Silitra','Simiganoschi','Simion','Simionescu','Simionesei','Simon','Sitaru','Sleghel','Sofian','Soficu','Sparhat','Spiridon','Stan','Stavarache','Stefan','Stefanita','Stingaciu','Stiufliuc','Stoian','Stoica','Stoleru','Stolniceanu','Stolnicu','Strainu','Strimtu','Suhani','Tabusca','Talif','Tanasa','Teclici','Teodorescu','Tesu','Tifrea','Timofte','Tincu','Tirpescu','Toader','Tofan','Toma','Toncu','Trifan','Tudosa','Tudose','Tuduri','Tuiu','Turcu','Ulinici','Unghianu','Ungureanu','Ursache','Ursachi','Urse','Ursu','Varlan','Varteniuc','Varvaroi','Vasilache','Vasiliu','Ventaniuc','Vicol','Vidru','Vinatoru','Vlad','Voaides','Vrabie','Vulpescu','Zamosteanu','Zazuleac');
 	lista_prenume varr := varr( 'Adina','Alexandra','Alina','Ana','Anca','Anda','Andra','Andreea','Andreia','Antonia','Bianca','Camelia','Claudia','Codrina','Cristina','Daniela','Daria','Delia','Denisa','Diana','Ecaterina','Elena','Eleonora','Elisa','Ema','Emanuela','Emma','Gabriela','Georgiana','Ileana','Ilona','Ioana','Iolanda','Irina','Iulia','Iuliana','Larisa','Laura','Loredana','Madalina','Malina','Manuela','Maria','Mihaela','Mirela','Monica','Oana','Paula','Petruta','Raluca','Sabina','Sanziana','Simina','Simona','Stefana','Stefania','Tamara','Teodora','Theodora','Vasilica','Xena', 'Adrian','Alex','Alexandru','Alin','Andreas','Andrei','Aurelian','Beniamin','Bogdan','Camil','Catalin','Cezar','Ciprian','Claudiu','Codrin','Constantin','Corneliu','Cosmin','Costel','Cristian','Damian','Dan','Daniel','Danut','Darius','Denise','Dimitrie','Dorian','Dorin','Dragos','Dumitru','Eduard','Elvis','Emil','Ervin','Eugen','Eusebiu','Fabian','Filip','Florian','Florin','Gabriel','George','Gheorghe','Giani','Giulio','Iaroslav','Ilie','Ioan','Ion','Ionel','Ionut','Iosif','Irinel','Iulian','Iustin','Laurentiu','Liviu','Lucian','Marian','Marius','Matei','Mihai','Mihail','Nicolae','Nicu','Nicusor','Octavian','Ovidiu','Paul','Petru','Petrut','Radu','Rares','Razvan','Richard','Robert','Roland','Rolland','Romanescu','Sabin','Samuel','Sebastian','Sergiu','Silviu','Stefan','Teodor','Teofil','Theodor','Tudor','Vadim','Valentin','Valeriu','Vasile','Victor','Vlad','Vladimir','Vladut');
-	lista_functii varr := varr('Manager','Contabil', 'Agent-paza', 'Casier', 'Sef-raion', 'Sef-magazin','Asistent-sef-magazin','Sef-depozit','Asistent-sef-depozit','Sef-tura', 'Asistent-vanzari','Gestionar-magazin' );
-
+	lista_functii varr := varr('Manager','Contabil', 'Vanzator', 'Agent-paza', 'Casier', 'Sef-raion', 'Sef-magazin','Asistent-sef-magazin','Sef-depozit','Asistent-sef-depozit','Sef-tura', 'Asistent-vanzari','Gestionar-magazin' );
+	
 	v_strada VARCHAR2(60);
 	v_adresa VARCHAR2(100);
 	v_numar_strada INT;
@@ -78,9 +78,9 @@ DECLARE
 	v_id_venituri INT;
 	v_valoare_venituri NUMBER(10,2);
 	v_descriere_venituri VARCHAR2(30);
-
+	
 	--pentru tabela facturi
-	cursor lista_angajati_vanzatori is select id, functie from angajati where functie='Casier';
+	cursor lista_angajati_vanzatori is select id, functie from angajati where functie='Vanzator';
 	v_facturi_client INT;
 	v_data_factura DATE;
 	v_valoare_factura NUMBER(10,2);
@@ -93,22 +93,7 @@ DECLARE
 	v_id_produsF INT;
 	v_countFacturi INT;
 	v_verific INT := 0;
-
-  --pentru tabela angajati_magazin
-  v_id_table INT;
-v_total_angajati INT;
-v_nr_angajati_mag INT;
-v_id_angajat INT;
-
---pentru tabelele contracte si EVIDENTE
-v_nr_contabili INT;
-v_nr_manageri INT;
-
---pentru contabili si manageri
-v_id_tabela_manageri INT;
-v_id_tabela_contabil INT;
-v_id_contabil INT;
-v_id_manager INT;
+	
 BEGIN
 
   --MAGAZINE
@@ -117,10 +102,10 @@ BEGIN
      v_strada:=lista_strazi(TRUNC(DBMS_RANDOM.VALUE(0,lista_strazi.count))+1);
      v_numar_strada:=ROUND(DBMS_RANDOM.VALUE(1,1000))+1;
      v_adresa:='Str. '||v_strada||' nr. '||v_numar_strada;
-
+  
      --telefon
      v_telefon:='07'||ROUND(DBMS_RANDOM.VALUE(100,999))||ROUND(DBMS_RANDOM.VALUE(100,999))||ROUND(DBMS_RANDOM.VALUE(10,99));
-
+  
      --numar angajati
      v_nr_angajati:=ROUND(DBMS_RANDOM.VALUE(1000,3000));
      INSERT INTO magazine VALUES(v_i,v_adresa,v_telefon,v_nr_angajati);
@@ -144,7 +129,7 @@ BEGIN
         v_denumire:=v_categorie||' '||lista_brand(TRUNC(DBMS_RANDOM.VALUE(0,lista_brand.count))+1);
         ---pret
         v_pret:=TRUNC(DBMS_RANDOM.VALUE(10,1000),2);
-        INSERT INTO produse VALUES (v_j,v_denumire,v_model,v_culoare,v_pret);
+        INSERT INTO produse VALUES (v_j,v_categorie,v_denumire,v_model,v_culoare,v_pret);
   END LOOP;
 
 
@@ -167,7 +152,7 @@ BEGIN
 
   --ANGAJATI
   for v_iterator_magazine in 1..100 loop
-      select nr_angajati into v_nr_angajati2 from magazine where id=v_iterator_magazine;
+      select nr_angajati, id into v_nr_angajati2, v_id_magazin1 from magazine where id=v_iterator_magazine;
       for v_iterator in 1..v_nr_angajati2  loop
         --nume
          v_my_number_nume := TRUNC(DBMS_RANDOM.VALUE( 1, lista_nume.count));
@@ -199,7 +184,7 @@ BEGIN
          --data_angajare
          v_data_angajare := (sysdate-TRUNC(DBMS_RANDOM.VALUE(0,1000)));
 
-         insert into angajati (id, nume, prenume,salariu, functie,data_angajare) values ( v_id_pers, v_nume, v_prenume,v_salariu, v_functie, v_data_angajare);
+         insert into angajati (id, id_magazin, nume, prenume,salariu, functie,data_angajare) values ( v_id_pers, v_id_magazin1, v_nume, v_prenume,v_salariu, v_functie, v_data_angajare);
 
       end loop;
   end loop;
@@ -233,30 +218,31 @@ BEGIN
 
 
   --EVIDENTE
-  select count(id) into v_nr_manageri from angajati where functie='Contabil';
   v_id_evidenta:=1;
-  v_nr_manageri:=v_nr_manageri*10;
-      FOR v_i in 1..v_nr_manageri LOOP
+   FOR v_id_contabil in lista_contabili LOOP
+      FOR v_i in 1..10 LOOP
         --data random
         v_data_contabil:=SYSDATE + (365 * 2 * DBMS_RANDOM.VALUE(0,1) - 365);
-        INSERT INTO evidente VALUES(v_id_evidenta,v_data_contabil);
+        INSERT INTO evidente VALUES(v_id_evidenta,v_id_contabil.id,v_data_contabil);
         --id_evidenta
         v_id_evidenta:=v_id_evidenta+1;
       END LOOP;
+    END LOOP;
 
   --CONTRACTE
   v_id_contract:=1;
-select count(id) into v_nr_contabili from angajati where functie='Manager';
-v_nr_contabili:=v_nr_contabili*10;
-    FOR v_i in 1..v_nr_contabili LOOP
+  FOR v_id_manager in lista_manageri LOOP
+    FOR v_i in 1..10 LOOP
         --data random
         v_data_inceput:=SYSDATE + (365 * 2 * DBMS_RANDOM.VALUE(0,1) - 365);
         v_data_sfarsit:=v_data_inceput+(365 * 2 * DBMS_RANDOM.VALUE(1,2));
-        INSERT INTO contracte VALUES(v_id_contract,v_data_inceput,v_data_sfarsit);
+        INSERT INTO contracte VALUES(v_id_contract,v_id_manager.id,v_data_inceput,v_data_sfarsit);
         --v_id_contract
         v_id_contract:=v_id_contract+1;
     END LOOP;
-
+  END LOOP;
+     
+     
   --CHELTUIELI
   select count(id) INTO v_nr_inregistrari from evidente;
   v_id_cheltuieli:=1;
@@ -268,8 +254,8 @@ v_nr_contabili:=v_nr_contabili*10;
         v_id_cheltuieli:=v_id_cheltuieli+1;
     END LOOP;
   END LOOP;
-
-
+     
+     
   --VENITURI
   select count(id) INTO v_nr_inregistrari2 from evidente;
   v_descriere_venituri:='vanzari';
@@ -291,20 +277,18 @@ v_nr_contabili:=v_nr_contabili*10;
     for v_iterator1 in 1..v_NrFacturi loop
         --id_client
         v_facturi_client := DBMS_RANDOM.VALUE(1,300000);
-
+       
         --data_factura
         v_data_factura := (sysdate-TRUNC(DBMS_RANDOM.VALUE(0,500)));
-
+    
         --valoare
         v_valoare_factura := TRUNC(DBMS_RANDOM.VALUE(10,10000),2);
-
-        insert into facturi (id, data_factura , valoare) values ( v_count1, v_data_factura, v_valoare_factura);
-        insert into facturi_angajati(id, id_factura, id_angajat) values (v_count1, v_count1,v_std_linie.id);
-        insert into facturi_clienti(id, id_factura, id_client) values (v_count1, v_count1,v_facturi_client);
+        
+        insert into facturi (id, id_angajat , id_client , data_factura , valoare) values ( v_count1, v_std_linie.id, v_facturi_client, v_data_factura, v_valoare_factura);    
         v_count1 := v_count1+1;
     end loop;
   end loop;
-
+  
   --LISTA PRODUSE
   v_count2 := 1;
   select count(id)/2 into v_countFacturi from facturi;
@@ -316,39 +300,6 @@ v_nr_contabili:=v_nr_contabili*10;
         v_count2 := v_count2+1;
     end loop;
   end loop;
-  --angajati_magazin
-  v_id_table:=1;
-select count(id) into v_total_angajati from angajati;
-FOR v_i in 1..10 LOOP
- select nr_angajati INTO v_nr_angajati_mag from magazine where id=v_i;
-  FOR v_j in 1..v_nr_angajati_mag LOOP
-      v_id_angajat:=ROUND(DBMS_RANDOM.VALUE(1,v_total_angajati));
-    INSERT INTO angajati_magazin VALUES(v_id_table,v_i,v_id_angajat);
-    v_id_table:=v_id_table+1;
-  END LOOP;
-END LOOP;
-
---contabili
-v_id_evidenta:=1;
- v_id_tabela_contabil:=1;
-FOR v_id_contabil in lista_contabili LOOP
-FOR v_i in 1..10 LOOP
-    INSERT INTO contabili VALUES(v_id_tabela_contabil,v_id_contabil.id,v_id_evidenta);
-  v_id_evidenta:=v_id_evidenta+1;
-  v_id_tabela_contabil:=v_id_tabela_contabil+1;
-END LOOP;
-END LOOP;
-
---manageri
-v_id_contract:=1;
-v_id_tabela_manageri:=1;
-
-FOR v_id_manager in lista_manageri LOOP
-FOR v_i in 1..10 LOOP
-    INSERT INTO manageri VALUES(v_id_tabela_manageri,v_id_manager.id,v_id_contract);
-    v_id_contract:=v_id_contract+1;
-    v_id_tabela_manageri:=v_id_tabela_manageri+1;
-END LOOP;
-END LOOP;
+  
 	  DBMS_OUTPUT.PUT_LINE('Inserare tabele: succes!');
 END;
