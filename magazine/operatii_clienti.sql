@@ -59,7 +59,7 @@ create or replace package body operatii_clienti as
 
 
 
-    function delete_client(p_id_client in clienti.id%TYPE) return varchar2 as
+     function delete_client(p_id_client in clienti.id%TYPE) return varchar2 as
     v_done varchar2(10);
     v_done_c number;
     v_exception_c number := 0;
@@ -81,11 +81,11 @@ create or replace package body operatii_clienti as
     return v_done;
     end if;
     exception
-      when id_persoana_inexistent then
+      when id_client_inexistent then
         return 'Id-ul clientului nu exista in baza de date!';
-      when others then
-        return 'Unknown exception!';
+      
   end;
+
 
 
 
