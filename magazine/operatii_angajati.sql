@@ -4,7 +4,10 @@ create or replace package operatii_angajati as
    function delete_angajat(p_id_angajat in angajati.id%TYPE) return varchar2;
    function update_angajat(p_id_angajat in angajati.id%TYPE, p_nume angajati.nume%TYPE, p_prenume angajati.prenume%TYPE ,  p_salariu angajati.salariu%TYPE, p_functie ANGAJATI.FUNCTIE%TYPE,p_magazin ANGAJATI.ID_MAGAZIN%TYPE) return varchar2;
   function interogare_angajat(p_id_angajat in angajati.id%TYPE) return varchar2;
+    function cautare_nume(p_nume in angajati.nume%TYPE) return varchar2;
+   function cautare_nume_prenume(p_nume in angajati.nume%TYPE, p_prenume in angajati.prenume%TYPE) return varchar2;
   
+
  end;
 /
 
@@ -131,10 +134,10 @@ function interogare_angajat(p_id_angajat in angajati.id%TYPE)  return varchar2 a
         return 'Id-ul persoanei nu exista in baza de date!';
  end;
   
-  
+   
 function cautare_nume(p_nume in angajati.nume%TYPE) return varchar2 as
-    v_nume_client angajati.nume%TYPE;
-    v_prenume_client angajati.prenume%TYPE;
+    v_nume_angajat angajati.nume%TYPE;
+    v_prenume_angajat angajati.prenume%TYPE;
     v_informatii varchar2(32000);
     v_exception_c_n number := 0;
   begin
@@ -155,8 +158,8 @@ function cautare_nume(p_nume in angajati.nume%TYPE) return varchar2 as
   end;
   
   function cautare_nume_prenume(p_nume in angajati.nume%TYPE, p_prenume in angajati.prenume%TYPE)  return varchar2 as
-    v_nume_client clienti.nume%TYPE;
-    v_prenume_client clienti.prenume%TYPE;
+    v_nume_angajat angajati.nume%TYPE;
+    v_prenume_angajat angajati.prenume%TYPE;
     v_informatii varchar2(32000);
     v_exception_c_n number := 0;
     v_exception_c_p number := 0;
@@ -170,16 +173,16 @@ function cautare_nume(p_nume in angajati.nume%TYPE) return varchar2 as
     elsif(v_exception_c_p = 0) then
       raise prenume_inexistent;
     else
-      for v_index in (select id, nume, prenume from clienti where upper(nume) = upper(p_nume) and upper(prenume) = upper(p_prenume)) loop
+      for v_index in (select id, nume, prenume from angajati where upper(nume) = upper(p_nume) and upper(prenume) = upper(p_prenume)) loop
         v_informatii := v_index.id || ' ' || v_index.nume || ' ' || v_index.prenume;
       end loop;
       return v_informatii;
     end if;
     exception
       when nume_inexistent then
-        return 'Numele clientului nu exista in baza de date!';
+        return 'Numele angajatului nu exista in baza de date!';
       when prenume_inexistent then
-        return 'Prenumele clientului nu exista in baza de date!';
+        return 'Prenumele angajatului nu exista in baza de date!';
   end;
   
 end operatii_angajati;
