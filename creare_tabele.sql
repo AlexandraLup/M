@@ -77,8 +77,8 @@ create table facturi(
   id_client INT NOT NULL,
   data_factura DATE,
   valoare NUMBER(10,2),
-  CONSTRAINT fk_facturi_id_angajat FOREIGN KEY (id_angajat) REFERENCES angajati(id),
-  CONSTRAINT fk_facturi_id_client FOREIGN KEY (id_client) REFERENCES clienti(id)
+  CONSTRAINT fk_facturi_id_angajat FOREIGN KEY (id_angajat) REFERENCES angajati(id) on delete cascade,
+  CONSTRAINT fk_facturi_id_client FOREIGN KEY (id_client) REFERENCES clienti(id) on delete cascade
 )
 /
 
