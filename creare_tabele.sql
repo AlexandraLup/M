@@ -76,7 +76,7 @@ create table facturi(
   id_angajat INT NOT NULL,
   id_client INT NOT NULL,
   data_factura DATE,
-  valoare NUMBER(10,2),
+  valoare NUMBER(38,2),
   CONSTRAINT fk_facturi_id_angajat FOREIGN KEY (id_angajat) REFERENCES angajati(id) on delete cascade,
   CONSTRAINT fk_facturi_id_client FOREIGN KEY (id_client) REFERENCES clienti(id) on delete cascade
 )
@@ -86,6 +86,9 @@ create table lista_produse(
   id INT PRIMARY KEY,
   id_produs INT NOT NULL,
   id_factura INT NOT NULL,
+  cantitate INT NOT NULL,
+  subtotal NUMBER(38,2),
+  marime VARCHAR2(30),
   CONSTRAINT fk_lista_produse_id_produs FOREIGN KEY (id_produs) REFERENCES produse(id),
   CONSTRAINT fk_lista_produse_id_factura FOREIGN KEY (id_factura) REFERENCES facturi(id)
 )
