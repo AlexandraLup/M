@@ -65,7 +65,7 @@ create or replace package body administrare_facturi is
     end if;
     exception
       when id_factura_inexistent then
-        return 'Id-ul facturi nu exista in baza de date!';
+        return 'Id-ul facturii nu exista in baza de date!';
       when others then
         return 'Unknown exception';
     END;

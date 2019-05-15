@@ -1,10 +1,9 @@
 create or replace package administrare_produse is
   function adauga_produs(p_categorie produse.categorie%type, p_denumire produse.denumire%type, p_model produse.model_produs%type, p_pret produse.pret%type, p_culoare produse.culoare%type , p_xs stocuri_magazin.stoc_xs%type,  p_s stocuri_magazin.stoc_s%type, p_m stocuri_magazin.stoc_m%type, p_l stocuri_magazin.stoc_l%type, p_xl stocuri_magazin.stoc_xl%type) return varchar2;
   function sterge_produs(p_id_produs produse.id%type) return varchar2;
-  function cauta_produs(p_id  produse.id%type) return varchar2;
+  function cauta_produs_denumire(p_denumire produse.denumire%type) return varchar2;
+  function cauta_produs_categorie(p_denumire produse.denumire%type, p_categorie produse.categorie%type) return varchar2;
   function discount_produs(p_id_produs produse.id%type, p_valoare_discount number) return varchar2;
-  function discount_produs_categorie(p_categorie produse.categorie%type, p_valoare_discount number) return varchar2;
-  function disponibilitate_produs(p_id_produs produse.id%type, p_id_magazin stocuri_magazin.id_magazin%type) return varchar2 ;
    
  end administrare_produse;
 /
@@ -77,52 +76,25 @@ create or replace package body administrare_produse is
   end;
 
 
-  function cauta_produs(p_id  produse.id%type) return varchar2 is
+  function cauta_produs_denumire(p_denumire produse.denumire%type) return varchar2 is
   res varchar2(32000) := ' ';
-  v_verificareProdus int;
   begin
-	select count(id) into v_verificareProdus from produse where id=p_id;
-	if(v_verificareProdus = 0) then
-		raise produs_inexistent;
-	else
-		for v_index in (select * from produse where id=p_id)
-		loop
-		  
-		  res := res  || v_index.id || ' ' || v_index.categorie || ' ' || v_index.denumire || ' ' || v_index.model_produs || ' ' || v_index.culoare || ' ' || v_index.pret || ' ';
-		end loop;
-		return res;
-	end if;
-	
-	exception
-      when produs_inexistent then
-        return 'Produsul cautat nu exista';
-		
+    for v_index in (select * from produse where upper(denumire) like upper(p_denumire)||'%')
+    loop
+      res := res || '\n' || v_index.id || ' ' || v_index.categorie || ' ' || v_index.denumire || ' ' || v_index.model_produs || ' ' || v_index.culoare || ' ' || v_index.pret || ' ';
+    end loop;
+    return res;
   end;
   
-  
-    function disponibilitate_produs(p_id  produse.id%type , p_id_magazin stocuri_magazin.id_magazin%type) return varchar2 is
-  res varchar2(32000) := ' ';
-  v_verificareProdus int;
+  function cauta_produs_categorie(p_denumire produse.denumire%type, p_categorie produse.categorie%type) return varchar2 is
+    res varchar2(32000) := ' ';
   begin
-	select count(id) into v_verificareProdus from stocuri_magazin where id_produs=p_id and id_magazin=p_id_magazin;
-	if(v_verificareProdus = 0) then
-		raise produs_inexistent;
-	else
-		for v_index in (select * from stocuri_magazin where id_produs=p_id and id_magazin=p_id_magazin)
-		loop
-		  
-		  res := res  ||'XS:'|| v_index.stoc_xs || ' ' ||'S:'|| v_index.stoc_s || ' ' ||'M:'|| v_index.stoc_m || ' ' ||'L:'|| v_index.stoc_l || ' ' ||'XL:'||v_index.stoc_xl || ' ';
-		end loop;
-		return res;
-	end if;
-	
-	exception
-      when produs_inexistent then
-        return 'Produsul nu exista in acest magazin!';
-		
+    for v_index in (select * from produse where upper(denumire) = upper(p_denumire) and upper(categorie) = upper(p_categorie))
+    loop
+      res := res || '\n' || v_index.id || ' ' || v_index.categorie || ' ' || v_index.denumire || ' ' || v_index.model_produs || ' ' || v_index.culoare || ' ' || v_index.pret || ' ';
+   end loop;
+    return res;
   end;
-  
- 
   
   
   
@@ -149,33 +121,6 @@ create or replace package body administrare_produse is
       when valoare_discount_incorecta then
         return 'Valorea de discount pe care doriti sa o aplicati produsului este incorecta';
   end;
-  
-  
-  function discount_produs_categorie(p_categorie produse.categorie%type, p_valoare_discount number) return varchar2 is
-    v_verificareProdus number;
-  begin
-    if(p_valoare_discount <= 0 or p_valoare_discount >=100)
-    then
-      raise valoare_discount_incorecta;
-    else
-      select count(id) into v_verificareProdus from produse where categorie= p_categorie;
-      if(v_verificareProdus = 0)
-      then
-        raise produs_inexistent;
-      else
-        update produse set pret = pret - p_valoare_discount * pret / 100 where categorie= p_categorie;
-        return 'Success!';
-      end if;
-    end if;
-    
-    exception
-      when produs_inexistent then
-        return 'Produsul caruia doriti sa ii aplicati discountul nu exista';
-      when valoare_discount_incorecta then
-        return 'Valorea de discount pe care doriti sa o aplicati produsului este incorecta';
-  end;
-  
  
 end administrare_produse;
 /
-
