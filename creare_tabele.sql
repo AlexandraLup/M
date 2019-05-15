@@ -106,7 +106,7 @@ CREATE TABLE contracte (
   id_angajat INT,
   data_inceput  DATE,
   data_sfarsit  DATE,
-  CONSTRAINT fk_contracte_id_angajat FOREIGN KEY (id_angajat) REFERENCES angajati(id)
+  CONSTRAINT fk_contracte_id_angajat FOREIGN KEY (id_angajat) REFERENCES angajati(id) on delete cascade
 )
 /
 CREATE TABLE cheltuieli (
