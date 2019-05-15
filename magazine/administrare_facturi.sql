@@ -3,11 +3,10 @@ create or replace package administrare_facturi is
   function sterge_factura(p_id_factura facturi.id%type) return varchar2;
   function cauta_factura(p_id_factura facturi.id%type) return varchar2;
   function vezi_produse (p_id_factura facturi.id%type) return varchar2;
-  function adauga_produs (p_id_factura facturi.id%type, p_id_produs produse.id%type, p_cantitate lista_produse.cantitate%type, p_subtotal lista_produse.subtotal%type, p_marime lista_produse.marime%TYPE) return varchar2;
+  function adauga_produs (p_id_factura facturi.id%type, p_id_produs lista_produse.id_produs%type, p_cantitate lista_produse.cantitate%type, p_subtotal lista_produse.subtotal%type, p_marime lista_produse.marime%TYPE) return varchar2;
  end administrare_facturi;
  /
 create or replace package body administrare_facturi is
-
   id_factura_inexistent exception;
   PRAGMA EXCEPTION_INIT(id_factura_inexistent, -20001);
   id_factura_existent exception;
@@ -106,12 +105,18 @@ create or replace package body administrare_facturi is
     else 
      for v_index in (select p.id, p.denumire, l.cantitate, l.subtotal from facturi f join lista_produse l on f.id=l.id_factura join produse p on l.id_produs=p.id) loop
        res := res || v_index.id || ' ' || v_index.denumire || ' ' || v_index.cantitate || ' ';
-     end loop
+     end loop;
        return res;
     end if;
+	
+	exception
+      when id_factura_inexistent then
+        return 'Id-ul facturii nu exista in baza de date!';
+	 when others then
+        return 'Unknown exception!';
   end;
 
-  function adauga_produs (p_id_factura facturi.id%type, p_id_produs l.id_produs%type, p_cantitate lista_produse.cantitate%type, p_subtotal lista_produse.subtotal%type, p_marime lista_produse.marime%TYPE) return varchar2 as 
+  function adauga_produs (p_id_factura facturi.id%type, p_id_produs lista_produse.id_produs%type, p_cantitate lista_produse.cantitate%type, p_subtotal lista_produse.subtotal%type, p_marime lista_produse.marime%TYPE) return varchar2 as 
     v_exception_c number :=0;
     v_id lista_produse.id%TYPE;
     begin
