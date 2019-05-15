@@ -83,7 +83,7 @@ DECLARE
 	cursor lista_angajati_vanzatori is select id, functie from angajati where functie='Vanzator';
 	v_facturi_client INT;
 	v_data_factura DATE;
-	v_valoare_factura NUMBER(10,2);
+	v_valoare_factura NUMBER(38,2);
 	v_NrFacturi INT;
 	v_count1 INT;
 	v_count2 INT;
@@ -98,7 +98,7 @@ DECLARE
 	v_pret_produs NUMBER(10,2);
   v_marime VARCHAR2(60);
 BEGIN
-/*
+
   --MAGAZINE
   FOR v_i in 1..100 LOOP
     --adresa
@@ -285,13 +285,14 @@ BEGIN
         v_data_factura := (sysdate-TRUNC(DBMS_RANDOM.VALUE(0,500)));
     
         --valoare
-        v_valoare_factura := TRUNC(DBMS_RANDOM.VALUE(10,10000),2);
+        --v_valoare_factura := TRUNC(DBMS_RANDOM.VALUE(10,10000),2);
+        v_valoare_factura:= 0;
         
-        insert into facturi (id, id_angajat , id_client , data_factura,valoare) values ( v_count1, v_std_linie.id, v_facturi_client, v_data_factura,v_valoare_factura);    
+        insert into facturi (id, id_angajat , id_client , data_factura, valoare) values ( v_count1, v_std_linie.id, v_facturi_client, v_data_factura,v_valoare_factura);    
         v_count1 := v_count1+1;
     end loop;
   end loop;
-  */
+  
   --LISTA PRODUSE
   v_count2 := 1;
   v_valoare_factura := 0;
@@ -304,9 +305,12 @@ BEGIN
         v_marime := lista_marimi( TRUNC(DBMS_RANDOM.VALUE(1,5)));
         select pret into v_pret_produs from produse where id=v_id_produsF;
         v_subtotal:=v_pret_produs * v_cantitate;
+        v_valoare_factura:= v_valoare_factura + v_subtotal;
         insert into lista_produse (id, id_factura, id_produs, cantitate, subtotal, marime) values (v_count2, v_iterator, v_id_produsF, v_cantitate, v_subtotal, v_marime);
         v_count2 := v_count2+1;
     end loop;
+     update facturi set valoare= valoare+ v_valoare_factura where id= v_iterator;
+     v_valoare_factura := 0;
   end loop;
   
 	  DBMS_OUTPUT.PUT_LINE('Inserare tabele: succes!');
