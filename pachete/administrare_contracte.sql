@@ -1,8 +1,6 @@
--- package destinat mnagementului angajatilor
 create or replace package administrare_contracte as
   function add_contract(p_id_angajat in contracte.id%TYPE, p_data_inceput contracte.data_inceput%TYPE, p_data_sfarsit contracte.data_sfarsit%TYPE) return varchar2;
   function delete_contract(p_id_contract in contracte.id%TYPE) return varchar2;
-
  end;
 /
 
@@ -68,4 +66,4 @@ create or replace package body administrare_contracte is
       
   end;
   
-end administrare_contracte 
+end administrare_contracte;
