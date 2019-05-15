@@ -1,6 +1,7 @@
 create or replace package administrare_contracte as
   function add_contract(p_id_angajat in contracte.id%TYPE, p_data_inceput contracte.data_inceput%TYPE, p_data_sfarsit contracte.data_sfarsit%TYPE) return varchar2;
   function delete_contract(p_id_contract in contracte.id%TYPE) return varchar2;
+  function cauta_contract(p_id_contract in contracte.id%TYPE) return varchar2;
  end;
 /
 
@@ -65,5 +66,28 @@ create or replace package body administrare_contracte is
         return 'Id-ul contractului nu exista in baza de date!';
       
   end;
+  
+  function cauta_contract(p_id_contract in contracte.id%TYPE) return varchar2 as
+  res varchar2(300) ;
+  v_nume angajati.nume%type;
+  v_prenume angajati.prenume%type;
+  v_data_inceput CONTRACTE.DATA_INCEPUT%Type;
+  v_data_sfarsit CONTRACTE.DATA_SFARSIT%type;
+  v_exception_c number := 0;
+begin
+
+select count(*) into v_exception_c from (select id from contracte where id=p_id_contract);
+if(v_exception_c = 0) then
+      raise id_contract_inexistent;
+else 
+  select data_inceput into v_data_inceput from contracte where id=p_id_contract;
+   select data_sfarsit into v_data_sfarsit from contracte where id=p_id_contract;
+   select p.nume into v_nume from contracte c join angajati p on p.id=c.id_angajat where c.id=p_id_contract;
+   select p.prenume into v_prenume from contracte c join angajati p on p.id=c.id_angajat where c.id=p_id_contract;
+  res := res ||p_id_contract||' '||v_data_inceput||' ' ||v_data_sfarsit||' '||v_nume||' '||v_prenume;
+
+ return res;
+end if;
+end;
   
 end administrare_contracte;
