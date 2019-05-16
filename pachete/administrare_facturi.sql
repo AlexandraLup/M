@@ -68,7 +68,7 @@ create or replace package body administrare_facturi is
         return 'Id-ul facturii nu exista in baza de date!';
       when others then
         return 'Unknown exception';
-    END;
+    end;
 
   function sterge_factura(p_id_factura facturi.id%type) return varchar2 as
     v_done varchar2(10);
@@ -120,7 +120,8 @@ create or replace package body administrare_facturi is
     v_exception_c number :=0;
     v_id lista_produse.id%TYPE;
     begin
-    select count(*) into v_exception_c from (select id from facturi where id = p_id_factura);
+    
+    select count(id) into v_exception_c  from facturi where id = p_id_factura;
     if(v_exception_c = 0) then
       raise id_factura_inexistent;
     else 
@@ -131,8 +132,7 @@ create or replace package body administrare_facturi is
     exception
       when id_factura_inexistent then
         return 'Id-ul facturii nu exista in baza de date!';
-      when others then
-        return 'Unknown exception!';
+     
     end;
 
 end administrare_facturi;
