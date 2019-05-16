@@ -1,5 +1,4 @@
 
-
 create or replace package rapoarte as
 	function raport_cheltuieli( p_descriere in cheltuieli.descriere%type, p_data_inceput in evidente.data%type, p_data_sfarsit in evidente.data%type) return varchar2;
    	function raport_venituri( p_data_inceput in evidente.data%type, p_data_sfarsit in evidente.data%type) return varchar2;
