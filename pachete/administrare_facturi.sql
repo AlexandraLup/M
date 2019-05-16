@@ -104,7 +104,7 @@ create or replace package body administrare_facturi is
       raise id_factura_inexistent;
     else 
      for v_index in (select p.id, p.denumire, l.cantitate, l.subtotal, l.marime from facturi f join lista_produse l on f.id=l.id_factura join produse p on l.id_produs=p.id where f.id=p_id_factura) loop
-       res := res || v_index.id || ' '|| v_index.cantitate || ' '||v_index.subtotal||' '||v_index.marime||' ';
+       res := res || v_index.id || ':'||v_index.denumire||':'|| v_index.cantitate || ':'||v_index.subtotal||':'||v_index.marime||':';
      end loop;
        return res;
     end if;

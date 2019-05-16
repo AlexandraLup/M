@@ -143,6 +143,11 @@ create or replace package body administrare_vc is
  function cauta_venit(p_id_venit in venituri.id%TYPE) return varchar2 as
   res varchar2(300) := ' ';
   v_exception_c number := 0;
+  v_id_evidenta evidente.id%type;
+  v_valoare venituri.valoare%type;
+  v_data evidente.data%type;
+  v_nume angajati.nume%type;
+  v_prenume angajati.prenume%type;
   begin
   
     select count(*) into v_exception_c from (select id from venituri where id=p_id_venit);
@@ -150,9 +155,13 @@ create or replace package body administrare_vc is
     if(v_exception_c = 0) then
       raise id_venit_inexistent;
     else
-      for v_info in (select v.id, v.id_evidenta, v.valoare, e.data, a.nume, a.prenume from venituri v join evidente e on e.id=v.id_evidenta join angajati a on a.id=e.id_angajat where v.id=p_id_venit)loop
-      res := res || v_info.id ||' ' || v_info.id_evidenta||' '||v_info.valoare||' ' || v_info.data||' '||v_info.nume||' ' ||v_info.prenume||' ';
-      end loop;
+      select id_evidenta into v_id_evidenta from venituri where id=p_id_venit;
+      select valoare into v_valoare from venituri where id=p_id_venit;
+     select e.data into v_data from venituri v join evidente e on e.id=v.id_evidenta where v.id=p_id_venit;
+     select a.nume into v_nume from angajati a join evidente e on a.id=e.id_angajat join venituri v on v.id_evidenta=e.id where v.id=p_id_venit;
+     select a.prenume into v_prenume from angajati a join evidente e on a.id=e.id_angajat join venituri v on v.id_evidenta=e.id where v.id=p_id_venit;
+      res := res || p_id_venit ||' ' || v_id_evidenta||' '||v_valoare||' ' || v_data||' '||v_nume||' ' ||v_prenume||' ';
+      
       return res;
     end if;
     exception
@@ -164,6 +173,12 @@ create or replace package body administrare_vc is
    function cauta_cheltuieli(p_id_cheltuieli in cheltuieli.id%TYPE) return varchar2 as
   res varchar2(300) := ' ';
   v_exception_c number := 0;
+   v_id_evidenta evidente.id%type;
+  v_valoare venituri.valoare%type;
+  v_data evidente.data%type;
+  v_nume angajati.nume%type;
+  v_prenume angajati.prenume%type;
+  v_descriere cheltuieli.descriere%type;
   begin
   
     select count(*) into v_exception_c from (select id from cheltuieli where id=p_id_cheltuieli);
@@ -171,9 +186,14 @@ create or replace package body administrare_vc is
     if(v_exception_c = 0) then
       raise id_cheltuieli_inexistent;
     else
-      for v_info in (select v.id, v.id_evidenta, v.valoare, v.descriere, e.data, a.nume, a.prenume from cheltuieli v join evidente e on e.id=v.id_evidenta join angajati a on a.id=e.id_angajat where v.id=p_id_cheltuieli)loop
-      res := res || v_info.id ||' ' || v_info.id_evidenta||' '||v_info.valoare||' '||v_info.descriere||' '||v_info.data||' '||v_info.nume||' ' ||v_info.prenume||' ';
-      end loop;
+      select id_evidenta into v_id_evidenta from cheltuieli where id=p_id_cheltuieli;
+      select descriere into v_descriere from cheltuieli where id=p_id_cheltuieli;
+      select valoare into v_valoare from cheltuieli where id=p_id_cheltuieli;
+     select e.data into v_data from cheltuieli v join evidente e on e.id=v.id_evidenta where v.id=p_id_cheltuieli;
+     select a.nume into v_nume from angajati a join evidente e on a.id=e.id_angajat join cheltuieli v on v.id_evidenta=e.id where v.id=p_id_cheltuieli;
+     select a.prenume into v_prenume from angajati a join evidente e on a.id=e.id_angajat join cheltuieli v on v.id_evidenta=e.id where v.id=p_id_cheltuieli;
+      res := res || p_id_cheltuieli ||' ' || v_id_evidenta||' '||v_descriere||' ' ||v_valoare||' ' || v_data||' '||v_nume||' ' ||v_prenume||' ';
+     
       return res;
     end if;
     exception
