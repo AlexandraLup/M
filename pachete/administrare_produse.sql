@@ -88,7 +88,7 @@ create or replace package body administrare_produse is
 		for v_index in (select * from produse where id=p_id)
 		loop
 		  
-		  res := res  || v_index.id || ' ' || v_index.categorie || ' ' || v_index.denumire || ' ' || v_index.model_produs || ' ' || v_index.culoare || ' ' || v_index.pret || ' ';
+		  res := res  || v_index.id || ':' || v_index.categorie || ':' || v_index.denumire || ':' || v_index.model_produs || ':' || v_index.culoare || ':' || v_index.pret || ':';
 		end loop;
 		return res;
 	end if;
@@ -100,15 +100,15 @@ create or replace package body administrare_produse is
   end;
   
   
-    function disponibilitate_produs(p_id  produse.id%type , p_id_magazin stocuri_magazin.id_magazin%type) return varchar2 is
+    function disponibilitate_produs(p_id_produs  produse.id%type , p_id_magazin stocuri_magazin.id_magazin%type) return varchar2 is
   res varchar2(32000) := ' ';
   v_verificareProdus int;
   begin
-	select count(id) into v_verificareProdus from stocuri_magazin where id_produs=p_id and id_magazin=p_id_magazin;
+	select count(id) into v_verificareProdus from stocuri_magazin where id_produs=p_id_produs and id_magazin=p_id_magazin;
 	if(v_verificareProdus = 0) then
 		raise produs_inexistent;
 	else
-		for v_index in (select * from stocuri_magazin where id_produs=p_id and id_magazin=p_id_magazin)
+		for v_index in (select * from stocuri_magazin where id_produs=p_id_produs and id_magazin=p_id_magazin)
 		loop
 		  
 		  res := res  ||'XS:'|| v_index.stoc_xs || ' ' ||'S:'|| v_index.stoc_s || ' ' ||'M:'|| v_index.stoc_m || ' ' ||'L:'|| v_index.stoc_l || ' ' ||'XL:'||v_index.stoc_xl || ' ';
