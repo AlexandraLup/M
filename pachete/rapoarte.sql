@@ -1,8 +1,11 @@
 
 create or replace package rapoarte as
+  TYPE MyTab IS TABLE OF NUMBER INDEX BY VARCHAR2(30);
+  CURSOR lista_categorii IS select categorie from produse ;
 	function raport_cheltuieli( p_descriere in cheltuieli.descriere%type, p_data_inceput in evidente.data%type, p_data_sfarsit in evidente.data%type) return varchar2;
-   	function raport_venituri( p_data_inceput in evidente.data%type, p_data_sfarsit in evidente.data%type) return varchar2;
-    function raport_contracte_expirate(p_id_magazin magazine.id%type, p_data_cautare contracte.data_sfarsit%type) return varchar2;
+  function raport_venituri( p_data_inceput in evidente.data%type, p_data_sfarsit in evidente.data%type) return varchar2;
+  function raport_contracte_expirate(p_id_magazin magazine.id%type, p_data_cautare contracte.data_sfarsit%type) return varchar2;
+  function top_produs(p_anotimp in varchar2) return varchar2 ;
 end;
 /
 create or replace package body rapoarte as
@@ -134,7 +137,56 @@ create or replace package body rapoarte as
       when others then
         return 'Unknown exception';
     end;
-  
+    
+      function top_produs(p_anotimp in varchar2) return varchar2 as
+      aparitii MyTab;
+      v_max INT;
+      v_categorie_max  produse.categorie%type;
+      v_l1 varchar2(30);
+      v_l2 varchar2(30);
+      v_l3 varchar2(30);
+      
+      begin
+         if p_anotimp = 'primavara' then
+          v_l1 := 'march';
+          v_l2 := 'april';
+          v_l3 := 'may';
+         elsif p_anotimp = 'vara' then
+          v_l1 := 'june';
+          v_l2 := 'julie';
+          v_l3 := 'august';
+         elsif p_anotimp = 'toamna' then
+          v_l1 := 'september';
+          v_l3 := 'october';
+          v_l3 := 'november';
+         else 
+          v_l1 := 'december';
+          v_l2 := 'january';
+          v_l3 := 'february';
+         end if;
+       for v_an in 2017..2025 loop
+          FOR v_cat in ( select categorie from facturi f join lista_produse l on l.id_factura=f.id join produse p on p.id=l.id_produs where trim( TO_CHAR(f.data_factura, 'YYYY'))=v_an 
+          and trim(TO_CHAR(f.data_factura, 'month'))in ( v_l1 , v_l2, v_l3)) loop
+          if aparitii.exists(v_cat.categorie) then 
+          aparitii(v_cat.categorie) := aparitii(v_cat.categorie) +1; 
+         else 
+         aparitii(v_cat.categorie) :=1;
+        end if;
+        end loop;
+       end loop;
+
+       v_max := 0; 
+
+       for v_categorie in lista_categorii loop
+      if aparitii.exists(v_categorie.categorie) then
+       if aparitii(v_categorie.categorie) > v_max then
+        v_max := aparitii(v_categorie.categorie);
+      v_categorie_max := v_categorie.categorie;
+     end if;
+      end if;
+      end loop;
+      return v_categorie_max || ' ' || v_max;
+      end;
 end rapoarte;
   
   
